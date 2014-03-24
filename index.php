@@ -16,8 +16,8 @@ function makeGrid ($gridsize=array(), $item=array()) {
         $grid .= '<tr>';
         for ($j = 0; $j < $x; $j++) {
             $isRobot = $item[0] === $j && $item[1] === $i;
-            $content = ($isRobot) ? "<span class='robot'>R</span>" : "";
-            $grid .= "<td>$content</td>";
+            $className = ($isRobot) ? "robot" : "";
+            $grid .= "<td class='$className'></td>";
         }
         $grid .= "</tr>\n";
     }
@@ -39,7 +39,7 @@ function makeGrid ($gridsize=array(), $item=array()) {
     </head>
     <body>
         <div class="main"><?php makegrid($grid, $robot); ?>
-        </div>script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="js/main.js"></script>
     </body>

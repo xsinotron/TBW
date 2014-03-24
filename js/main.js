@@ -34,6 +34,7 @@
         function initBtn () {
             $(".grid tr td").off().on('click', actionBtn);
             $("html").off().on('keyup', actionKeys);
+            
         }
         /**
          *
