@@ -18,20 +18,85 @@ html, body{
     height: auto;
     border: 0;
 }
-.grid td {
+.grid tr {
     background-color: silver;
-    border: 1px solid #dddddd;
+}
+.grid td {
+    border: 1px solid rgba(255,255,255,0.3);
     /* GENE  CSS3 */ transition-property: background-color;
     /* GENE  CSS3 */ transition-duration: .1s;
     /* GENE  CSS3 */ transition-timing-function: ease-out;
 }
-.grid tr {
+robot{
+  -webkit-transition: all -webkit-transform ease-out .2s;
 }
-td.mire{
-    background-color: #CBCBCB;
+robot:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.3);
+    height: 30%;
+    width: 30%;
+    top: 0px;
+    left: calc(50% - 15%);
+    border-radius: 100px;
 }
-td.cursor{
-    background-color: #2ecc40;
+[data-hovered="true"] {
+    box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.4);
+}
+.strobe {
+  -webkit-animation: strobe 1s infinite;
+  -webkit-transform-origin: bottom;
+  transform-origin: bottom;
+  animation: strobe 1s infinite;
 }
 
+@-webkit-keyframes strobe {
+    0% { -webkit-transform:   skew(4deg,0deg) scaleX(1); }
+    10% { -webkit-transform:  skew(1deg,0deg) scaleY(.9) ; }
+    50% { -webkit-transform:  skew(-4deg,0deg) scaleX(1); }
+    60% { -webkit-transform:  skew(-1deg,0deg) scaleY(.9) ; }
+    100% { -webkit-transform: skew(4deg,0deg) scaleX(1); }
+}
 
+@keyframes strobe {
+    0% { transform: skew( 4deg, 0deg) scaleX(1); }
+   10% { transform: skew( 1deg, 0deg) scaleY( .9) ; }
+   50% { transform: skew(-4deg, 0deg) scaleX(1); }
+   60% { transform: skew(-1deg, 0deg) scaleY( .9) ; }
+  100% { transform: skew( 4deg, 0deg) scaleX(1); }
+}
+robot {
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 2px 4px 15px;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    margin: 20px 10px;
+    box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin: 0px 10px;
+    height: 60px;
+    background: none repeat scroll 0% 0% #E41919;
+    border-color: #AB1212;
+    cursor: pointer;
+}
+robot.small {
+  height: 10px;
+  width:  10px;
+  border-width: 2px 4px 8px 4px;
+}
+robot:hover {
+  box-shadow: 0 0 0 6px rgba(255,255,255,.7);
+}
+     .plain{background-color: #2ecc40}
+.mire.plain{background-color: #33D145}
+     .cursor,
+.mire.cursor{background-color: rgb(255, 220, 0)}
+.sea{
+    background-color: #0074d9;
+}
+.mountain{
+    background-color: #85144b;
+}

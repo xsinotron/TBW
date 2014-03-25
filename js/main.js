@@ -5,6 +5,9 @@
         alert   = window.alert,
         TBW     = function () {
             var TBW = this;
+            var robot = {
+                dom: "<div>"
+            };
             function initCursor () {
                 var cursor = $('.cursor');
                 TBW.cursor = {
@@ -41,7 +44,7 @@
                 }
                 TBW.cursor.pos.y += sautdeligne;
                 TBW.cursor.pos.x += sautdecolonne;
-                
+
                 if (TBW.cursor.pos.x >= TBW.grid.x) {
                     TBW.cursor.pos.x = TBW.cursor.pos.x - TBW.grid.x;
                 }
@@ -102,7 +105,7 @@
             /**
              *
              */
-            function actionBtn (ev) {
+            function moveBtn (ev) {
                 ev.preventDefault();
                 var td = $(ev.currentTarget),
                     x  = parseInt(td.attr("data-x"), 10),
@@ -117,9 +120,8 @@
              *
              */
             function initBtn () {
-                $(".grid tr td").off().on('mouseover', actionBtn);
                 $("html").off().on('keydown', actionKeys);
-                
+                $(".grid tr td").off().on('mouseover', moveBtn);
             }
             /**
              *
