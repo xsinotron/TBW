@@ -15,34 +15,47 @@
             function freeMove () {
                 console.log("freeMove");
                 console.log("pos: ", TBW.robot.pos.x, TBW.robot.pos.y);
+                var sautdeligne   = 0,
+                    sautdecolonne = 0;
                 if (TBW.robot.pos.x >= TBW.grid.x) {
-                    console.log("X trop loin");
-                    TBW.robot.pos.x = TBW.robot.pos.x - TBW.grid.x - 1;
-                    TBW.robot.pos.y++;
+                    TBW.robot.pos.x = TBW.robot.pos.x - TBW.grid.x;
+                    sautdeligne = 1;
                 }
                 if (TBW.robot.pos.y >= TBW.grid.y) {
-                    console.log("Y trop loin");
+                    sautdecolonne = 1;
                     TBW.robot.pos.y = TBW.robot.pos.y - TBW.grid.y;
-                    TBW.robot.pos.x++;
                 }
                 if (TBW.robot.pos.x < 0) {
-                    console.log("X trop avant");
-                    TBW.robot.pos.y--;
-                    TBW.robot.pos.x = TBW.grid.x + TBW.robot.pos.x + ((TBW.robot.pos.y === 0) ? 1 : 1);
+                    TBW.robot.pos.x = TBW.grid.x - 1;
+                    sautdeligne = -1;
                 }
                 if (TBW.robot.pos.y < 0) {
-                    console.log("Y trop avant");
-                    TBW.robot.pos.y = TBW.grid.y + TBW.robot.pos.y;
-                    TBW.robot.pos.x--;
+                    sautdecolonne = -1;
+                    TBW.robot.pos.y = TBW.grid.y - 1;
+                }
+                TBW.robot.pos.y += sautdeligne;
+                TBW.robot.pos.x += sautdecolonne;
+                
+                if (TBW.robot.pos.x >= TBW.grid.x) {
+                    TBW.robot.pos.x = TBW.robot.pos.x - TBW.grid.x;
+                }
+                if (TBW.robot.pos.y >= TBW.grid.y) {
+                    TBW.robot.pos.y = TBW.robot.pos.y - TBW.grid.y;
+                }
+                if (TBW.robot.pos.x < 0) {
+                    TBW.robot.pos.x = TBW.grid.x - 1;
+                }
+                if (TBW.robot.pos.y < 0) {
+                    TBW.robot.pos.y = TBW.grid.y - 1;
                 }
             }
             function constrainedMove () {
                 console.log("constrainedMove");
                 if (TBW.robot.pos.x >= TBW.grid.x) {
-                    TBW.robot.pos.x = TBW.grid.x;
+                    TBW.robot.pos.x = TBW.grid.x - 1;
                 }
                 if (TBW.robot.pos.y >= TBW.grid.y) {
-                    TBW.robot.pos.y = TBW.grid.y;
+                    TBW.robot.pos.y = TBW.grid.y - 1;
                 }
                 if (TBW.robot.pos.x < 0) {
                     TBW.robot.pos.x = 0;
@@ -55,18 +68,21 @@
                 console.log("moveRobot() /////////");
                 console.log("to: ", to[0], to[1]);
                 to = to || [0,0];
-                $('td').removeClass("robot");
+                $('.robot').removeClass("robot");
+                $('td').removeClass("mire");
                 TBW.robot.pos.x += to[0];
                 TBW.robot.pos.y += to[1];
                 if (TBW.constrained) constrainedMove(); else freeMove();
                 console.log("to: ", TBW.robot.pos.x, TBW.robot.pos.y);
                 $("td[data-x="+TBW.robot.pos.x+"][data-y="+TBW.robot.pos.y+"]").addClass("robot");
+                $("td[data-x="+TBW.robot.pos.x+"]").addClass("mire");
+                $("td[data-y="+TBW.robot.pos.y+"]").addClass("mire");
             }
             /**
              *
              */
             function actionKeys (ev) {
-                ev.preventDefault();
+                //ev.preventDefault();
                 //console.log(ev.key, ev.keyCode);
                 // haut
                 if (ev.keyCode === 38) {moveRobot([ 0,-1]);}
@@ -91,7 +107,7 @@
              */
             function initBtn () {
                 $(".grid tr td").off().on('click', actionBtn);
-                $("html").off().on('keyup', actionKeys);
+                $("html").off().on('keydown', actionKeys);
                 
             }
             /**
@@ -120,6 +136,10 @@
              *
              */
             function init (params) {
+                params = params || {};
+                if (params.grid === undefined) {
+                    alert('LIB TBW > ERROR : Need to define grid value {x:0,y:0}');
+                }
                 this.constrained = params.constrained || false;
                 initGrid(params.grid);
                 initRobot();

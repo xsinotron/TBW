@@ -49,7 +49,7 @@ function makeGrid ($gridsize=array(), $item=array()) {
                     x: <?=$grid[0] ?>,
                     y: <?=$grid[1] ?>
                 },
-                constrained: true
+                constrained: false
             });
         </script>
     </body>

@@ -27,6 +27,11 @@ html, body{
 }
 .grid tr {
 }
+td.mire{
+    background-color: #CBCBCB;
+}
 td.robot{
     background-color: #2ecc40;
 }
+
+
