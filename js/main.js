@@ -116,14 +116,46 @@
                     moveTo(x, y);
                 }
             }
+            function moveRobotTo (x, y) {
+                console.log("moveRobotTo");
+                if (TBW.selectedRobot) TBW.selectedRobot.remove();
+                //TODO window.setInterval(300, function () {});
+                $("td[data-x=" + x + "][data-y=" + y + "]").append("<robot class='strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>");
+                    TBW.selectedRobot = undefined;
+                    $("td").removeClass("zone");
+                initBtn();
+            }
+            /**
+             *
+             */
+            function actionBtn (ev) {
+                ev.preventDefault();
+                var td = $(ev.currentTarget),
+                    x  = parseInt(td.attr("data-x"), 10),
+                    y  = parseInt(td.attr("data-y"), 10);
+                console.log("actionBtn", x, y);
+                if (TBW.selectedRobot) {
+                    console.log("actionBtn isrobot");
+                    if (td.hasClass("zone") && td.find('robot').length <= 0) {
+                        console.log("actionBtn zone");
+                        moveRobotTo(x, y);
+                    } else {
+                        TBW.selectedRobot = undefined;
+                        $("td").removeClass("zone");
+                    }
+                } else if (td.find('robot').length > 0) {
+                    menuRobot(td);
+                }
+            }
             /**
              *
              */
             function showZone (elt) {
+                $("td").removeClass("zone");
                 var zone = parseInt(elt.attr("data-zone"), 10),
                     x    = parseInt(elt.parent().attr("data-x"), 10),
                     y    = parseInt(elt.parent().attr("data-y"), 10);
-                console.info("current: ", x, y);
+                console.info("showZone: ", x, y);
                 $("td[data-x="+x+"][data-y="+y+"]").addClass("zone");
                 for (var i = 0; i <= zone; i++) {
                     for (var j = 0; j <= (zone - i); j++) {
@@ -137,11 +169,11 @@
             /**
              *
              */
-            function menuRobot (ev) {
-                console.log("menuRobot");
-                ev.preventDefault();
-                $(ev.currentTarget).attr("data-hovered", true);
-                showZone($(ev.currentTarget));
+            function menuRobot (td) {
+                TBW.selectedRobot = $(td).find('robot');
+                console.log("menuRobot", TBW.selectedRobot);
+                $(TBW.selectedRobot).attr("data-hovered", true);
+                showZone($(TBW.selectedRobot));
             }
             /**
              *
@@ -149,7 +181,7 @@
             function initBtn () {
                 $("html").off().on('keydown', actionKeys);
                 $(".grid tr td").off().on('mouseover', moveBtn);
-                $("robot").off().on("click", menuRobot);
+                $(".grid tr td").on('click', actionBtn);
             }
             /**
              *

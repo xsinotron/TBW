@@ -104,4 +104,6 @@ robot:hover {
 .zone.mire.sea{background-color: #115E9E}
 .mountain{background-color: #85144b;}
      .cursor,
-.mire.cursor{background-color: rgb(255, 220, 0)}
+.mire.cursor,
+.zone.cursor,
+.zone.mire.cursor{background-color: rgb(255, 220, 0)}
