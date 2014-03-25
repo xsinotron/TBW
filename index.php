@@ -1,7 +1,7 @@
 <?php
 $grid = array(
-    4,
-    6
+    32,
+    16
 );
 $robot = array(
     0,
@@ -17,7 +17,7 @@ function makeGrid ($gridsize=array(), $item=array()) {
         for ($j = 0; $j < $x; $j++) {
             $isRobot = $item[0] === $j && $item[1] === $i;
             $className = ($isRobot) ? "robot" : "";
-            $grid .= "<td class='$className'></td>";
+            $grid .= "<td class='$className' data-x='$j' data-y='$i'></td>";
         }
         $grid .= "</tr>\n";
     }
@@ -42,5 +42,15 @@ function makeGrid ($gridsize=array(), $item=array()) {
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="js/main.js"></script>
+        <script>
+            var control = new TBW();
+            control.init({
+                grid: {
+                    x: <?=$grid[0] ?>,
+                    y: <?=$grid[1] ?>
+                },
+                constrained: true
+            });
+        </script>
     </body>
 </html>

@@ -14,19 +14,18 @@ html, body{
 .grid{
     background-color: #01ff70;
     border-collapse: collapse;
-    width: 100%;
-    height: 100%;
+    width:  auto;
+    height: auto;
     border: 0;
 }
 .grid td {
     background-color: silver;
-    border: 6px solid #dddddd;
+    border: 1px solid #dddddd;
 }
 .grid td:hover{
         background-color: #dddddd;
 }
 .grid tr {
-    width: 100%
 }
 td.robot{
     background-color: #2ecc40;
