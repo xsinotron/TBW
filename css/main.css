@@ -92,11 +92,8 @@ robot:hover {
 }
      .plain{background-color: #2ecc40}
 .mire.plain{background-color: #33D145}
+     .sea{background-color: #0074d9;}
+.mire.sea{background-color: #1781D8}
+.mountain{background-color: #85144b;}
      .cursor,
 .mire.cursor{background-color: rgb(255, 220, 0)}
-.sea{
-    background-color: #0074d9;
-}
-.mountain{
-    background-color: #85144b;
-}

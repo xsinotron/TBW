@@ -21,7 +21,8 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
         for ($j = 0; $j < $x; $j++) {
             $iscursor = $cursor[0] === $j && $cursor[1] === $i;
             $isrobot  = $robot[0] === $j && $robot[1] === $i;
-            $land = "plain";
+            $isSea    = $j >= $x * 3/$i && $i >= $y * 2/$j;
+            $land = ($isSea) ? "sea" : "plain";
             $className = ($iscursor) ? "cursor" : "";
             $content   = ($isrobot)  ? "<robot class='strobe small' title='un robot!!'></robot>" : "";
             $grid .= "<td class='$land $className' data-x='$j' data-y='$i'>$content</td>";
