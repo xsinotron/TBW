@@ -11,7 +11,12 @@
                     dom: cursor,
                     pos: {x: parseInt(cursor.attr("data-x"), 10), y: parseInt(cursor.attr("data-y"), 10)}
                 };
-                moveCursor([0,0]);
+                moveCursor();
+            }
+            function moveTo(x, y) {
+                TBW.cursor.pos.x = x;
+                TBW.cursor.pos.y = y;
+                moveCursor();
             }
             function freeMove () {
                 console.log("freeMove");
@@ -66,9 +71,9 @@
                 }
             }
             function moveCursor (to) {
+                to = to || [0,0];
                 console.log("moveCursor() /////////");
                 console.log("to: ", to[0], to[1]);
-                to = to || [0,0];
                 $('.cursor').removeClass("cursor");
                 $('td').removeClass("mire");
                 TBW.cursor.pos.x += to[0];
@@ -99,15 +104,20 @@
              */
             function actionBtn (ev) {
                 ev.preventDefault();
-                var td = $(ev.currentTarget);
-                if (td.hasClass('cursor')) {alert("un cursor!");}
-                else {console.log("personne ici");}
+                var td = $(ev.currentTarget),
+                    x  = parseInt(td.attr("data-x"), 10),
+                    y  = parseInt(td.attr("data-y"), 10);
+                console.log(ev, x, y);
+                if (td.hasClass('cursor')) {console.log("un cursor!");}
+                else {
+                    moveTo(x, y);
+                }
             }
             /**
              *
              */
             function initBtn () {
-                $(".grid tr td").off().on('click', actionBtn);
+                $(".grid tr td").off().on('mouseover', actionBtn);
                 $("html").off().on('keydown', actionKeys);
                 
             }
@@ -145,7 +155,7 @@
                 initGrid(params.grid);
                 initCursor();
                 initBtn();
-                document.focus();
+                document.body.focus();
             }
             this.init = init;
         };

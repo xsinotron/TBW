@@ -22,9 +22,6 @@ html, body{
     background-color: silver;
     border: 1px solid #dddddd;
 }
-.grid td:hover{
-        background-color: #dddddd;
-}
 .grid tr {
 }
 td.mire{
