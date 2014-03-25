@@ -21,6 +21,9 @@ html, body{
 .grid td {
     background-color: silver;
     border: 1px solid #dddddd;
+    /* GENE  CSS3 */ transition-property: background-color;
+    /* GENE  CSS3 */ transition-duration: .1s;
+    /* GENE  CSS3 */ transition-timing-function: ease-out;
 }
 .grid tr {
 }
