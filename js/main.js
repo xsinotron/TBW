@@ -157,6 +157,7 @@
                 initGrid(params.grid);
                 initCursor();
                 initBtn();
+                $("[data-toggle='tooltip']").tooltip();
                 document.body.focus();
             }
             this.init = init;

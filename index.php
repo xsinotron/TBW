@@ -24,7 +24,7 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
             $isSea    = $j >= $x * 3/$i && $i >= $y * 2/$j;
             $land = ($isSea) ? "sea" : "plain";
             $className = ($iscursor) ? "cursor" : "";
-            $content   = ($isrobot)  ? "<robot class='strobe small' title='un robot!!'></robot>" : "";
+            $content   = ($isrobot)  ? "<robot class='strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top'></robot>" : "";
             $grid .= "<td class='$land $className' data-x='$j' data-y='$i'>$content</td>";
         }
         $grid .= "</tr>\n";
@@ -43,12 +43,15 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/boilertemplate.css">
+        <link rel="stylesheet" href="css/vendor/bootstrap.css">
+        <link rel="stylesheet" href="css/vendor/bootstrap-theme.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <div class="main"><?php makegrid($grid, $cursor, $robot); ?>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
         <script>
             var control = new TBW();
