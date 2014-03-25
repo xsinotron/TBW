@@ -12,6 +12,7 @@ $robot = array(
     2
 );
 function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
+    $domRobot = "<robot class='strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>";
     $x    = $gridsize[0];
     $y    = $gridsize[1];
     $grid = "<table class='grid'>\n";
@@ -25,7 +26,7 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
             $isSea    = $j >= $x * 3/$i && $i >= $y * 2/$j;
             $land = ($isSea) ? "sea" : "plain";
             $className = ($iscursor) ? "cursor" : "";
-            $content   = ($isrobot)  ? "<robot class='strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top'></robot>" : "";
+            $content   = ($isrobot)  ? $domRobot : "";
             $grid .= "<td class='$land $className' data-x='$j' data-y='$i'>$content</td>";
         }
         $grid .= "</tr>\n";

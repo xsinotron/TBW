@@ -119,11 +119,29 @@
             /**
              *
              */
+            function showZone (elt) {
+                var zone = parseInt(elt.attr("data-zone"), 10),
+                    x    = parseInt(elt.parent().attr("data-x"), 10),
+                    y    = parseInt(elt.parent().attr("data-y"), 10);
+                console.info("current: ", x, y);
+                $("td[data-x="+x+"][data-y="+y+"]").addClass("zone");
+                for (var i = 0; i <= zone; i++) {
+                    for (var j = 0; j <= (zone - i); j++) {
+                        $("td[data-x=" + (x + j) + "][data-y=" + (y + i) + "]").addClass("zone");
+                        $("td[data-x=" + (x + j) + "][data-y=" + (y - i) + "]").addClass("zone");
+                        $("td[data-x=" + (x - j) + "][data-y=" + (y + i) + "]").addClass("zone");
+                        $("td[data-x=" + (x - j) + "][data-y=" + (y - i) + "]").addClass("zone");
+                    }
+                }
+            }
+            /**
+             *
+             */
             function menuRobot (ev) {
                 console.log("menuRobot");
                 ev.preventDefault();
                 $(ev.currentTarget).attr("data-hovered", true);
-                //showZone;
+                showZone($(ev.currentTarget));
             }
             /**
              *
