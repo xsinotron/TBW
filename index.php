@@ -21,6 +21,7 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
         for ($j = 0; $j < $x; $j++) {
             $iscursor = $cursor[0] === $j && $cursor[1] === $i;
             $isrobot  = $robot[0] === $j && $robot[1] === $i;
+            $isrobot  = rand(0,100) > 90;
             $isSea    = $j >= $x * 3/$i && $i >= $y * 2/$j;
             $land = ($isSea) ? "sea" : "plain";
             $className = ($iscursor) ? "cursor" : "";
@@ -48,7 +49,12 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div class="main"><?php makegrid($grid, $cursor, $robot); ?>
+        <div class="main">
+            <?php makegrid($grid, $cursor, $robot); ?>
+            <section class="contextuel">
+                <h2>informations</h2>
+            </section>
+        </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>

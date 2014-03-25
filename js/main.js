@@ -119,9 +119,19 @@
             /**
              *
              */
+            function menuRobot (ev) {
+                console.log("menuRobot");
+                ev.preventDefault();
+                $(ev.currentTarget).attr("data-hovered", true);
+                //showZone;
+            }
+            /**
+             *
+             */
             function initBtn () {
                 $("html").off().on('keydown', actionKeys);
                 $(".grid tr td").off().on('mouseover', moveBtn);
+                $("robot").off().on("click", menuRobot);
             }
             /**
              *
