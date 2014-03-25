@@ -5,78 +5,79 @@
         alert   = window.alert,
         TBW     = function () {
             var TBW = this;
-            function initRobot () {
-                var robot = $('.robot');
-                TBW.robot = {
-                    dom: robot,
-                    pos: {x: parseInt(robot.attr("data-x"), 10), y: parseInt(robot.attr("data-y"), 10)}
+            function initCursor () {
+                var cursor = $('.cursor');
+                TBW.cursor = {
+                    dom: cursor,
+                    pos: {x: parseInt(cursor.attr("data-x"), 10), y: parseInt(cursor.attr("data-y"), 10)}
                 };
+                moveCursor([0,0]);
             }
             function freeMove () {
                 console.log("freeMove");
-                console.log("pos: ", TBW.robot.pos.x, TBW.robot.pos.y);
+                console.log("pos: ", TBW.cursor.pos.x, TBW.cursor.pos.y);
                 var sautdeligne   = 0,
                     sautdecolonne = 0;
-                if (TBW.robot.pos.x >= TBW.grid.x) {
-                    TBW.robot.pos.x = TBW.robot.pos.x - TBW.grid.x;
+                if (TBW.cursor.pos.x >= TBW.grid.x) {
+                    TBW.cursor.pos.x = TBW.cursor.pos.x - TBW.grid.x;
                     sautdeligne = 1;
                 }
-                if (TBW.robot.pos.y >= TBW.grid.y) {
+                if (TBW.cursor.pos.y >= TBW.grid.y) {
                     sautdecolonne = 1;
-                    TBW.robot.pos.y = TBW.robot.pos.y - TBW.grid.y;
+                    TBW.cursor.pos.y = TBW.cursor.pos.y - TBW.grid.y;
                 }
-                if (TBW.robot.pos.x < 0) {
-                    TBW.robot.pos.x = TBW.grid.x - 1;
+                if (TBW.cursor.pos.x < 0) {
+                    TBW.cursor.pos.x = TBW.grid.x - 1;
                     sautdeligne = -1;
                 }
-                if (TBW.robot.pos.y < 0) {
+                if (TBW.cursor.pos.y < 0) {
                     sautdecolonne = -1;
-                    TBW.robot.pos.y = TBW.grid.y - 1;
+                    TBW.cursor.pos.y = TBW.grid.y - 1;
                 }
-                TBW.robot.pos.y += sautdeligne;
-                TBW.robot.pos.x += sautdecolonne;
+                TBW.cursor.pos.y += sautdeligne;
+                TBW.cursor.pos.x += sautdecolonne;
                 
-                if (TBW.robot.pos.x >= TBW.grid.x) {
-                    TBW.robot.pos.x = TBW.robot.pos.x - TBW.grid.x;
+                if (TBW.cursor.pos.x >= TBW.grid.x) {
+                    TBW.cursor.pos.x = TBW.cursor.pos.x - TBW.grid.x;
                 }
-                if (TBW.robot.pos.y >= TBW.grid.y) {
-                    TBW.robot.pos.y = TBW.robot.pos.y - TBW.grid.y;
+                if (TBW.cursor.pos.y >= TBW.grid.y) {
+                    TBW.cursor.pos.y = TBW.cursor.pos.y - TBW.grid.y;
                 }
-                if (TBW.robot.pos.x < 0) {
-                    TBW.robot.pos.x = TBW.grid.x - 1;
+                if (TBW.cursor.pos.x < 0) {
+                    TBW.cursor.pos.x = TBW.grid.x - 1;
                 }
-                if (TBW.robot.pos.y < 0) {
-                    TBW.robot.pos.y = TBW.grid.y - 1;
+                if (TBW.cursor.pos.y < 0) {
+                    TBW.cursor.pos.y = TBW.grid.y - 1;
                 }
             }
             function constrainedMove () {
                 console.log("constrainedMove");
-                if (TBW.robot.pos.x >= TBW.grid.x) {
-                    TBW.robot.pos.x = TBW.grid.x - 1;
+                if (TBW.cursor.pos.x >= TBW.grid.x) {
+                    TBW.cursor.pos.x = TBW.grid.x - 1;
                 }
-                if (TBW.robot.pos.y >= TBW.grid.y) {
-                    TBW.robot.pos.y = TBW.grid.y - 1;
+                if (TBW.cursor.pos.y >= TBW.grid.y) {
+                    TBW.cursor.pos.y = TBW.grid.y - 1;
                 }
-                if (TBW.robot.pos.x < 0) {
-                    TBW.robot.pos.x = 0;
+                if (TBW.cursor.pos.x < 0) {
+                    TBW.cursor.pos.x = 0;
                 }
-                if (TBW.robot.pos.y < 0) {
-                    TBW.robot.pos.y = 0;
+                if (TBW.cursor.pos.y < 0) {
+                    TBW.cursor.pos.y = 0;
                 }
             }
-            function moveRobot (to) {
-                console.log("moveRobot() /////////");
+            function moveCursor (to) {
+                console.log("moveCursor() /////////");
                 console.log("to: ", to[0], to[1]);
                 to = to || [0,0];
-                $('.robot').removeClass("robot");
+                $('.cursor').removeClass("cursor");
                 $('td').removeClass("mire");
-                TBW.robot.pos.x += to[0];
-                TBW.robot.pos.y += to[1];
+                TBW.cursor.pos.x += to[0];
+                TBW.cursor.pos.y += to[1];
                 if (TBW.constrained) constrainedMove(); else freeMove();
-                console.log("to: ", TBW.robot.pos.x, TBW.robot.pos.y);
-                $("td[data-x="+TBW.robot.pos.x+"][data-y="+TBW.robot.pos.y+"]").addClass("robot");
-                $("td[data-x="+TBW.robot.pos.x+"]").addClass("mire");
-                $("td[data-y="+TBW.robot.pos.y+"]").addClass("mire");
+                console.log("to: ", TBW.cursor.pos.x, TBW.cursor.pos.y);
+                $("td[data-x="+TBW.cursor.pos.x+"][data-y="+TBW.cursor.pos.y+"]").addClass("cursor");
+                $("td[data-x="+TBW.cursor.pos.x+"]").addClass("mire");
+                $("td[data-y="+TBW.cursor.pos.y+"]").addClass("mire");
             }
             /**
              *
@@ -85,13 +86,13 @@
                 //ev.preventDefault();
                 //console.log(ev.key, ev.keyCode);
                 // haut
-                if (ev.keyCode === 38) {moveRobot([ 0,-1]);}
+                if (ev.keyCode === 38) {moveCursor([ 0,-1]);}
                 // bas
-                if (ev.keyCode === 40) {moveRobot([ 0, 1]);}
+                if (ev.keyCode === 40) {moveCursor([ 0, 1]);}
                 // gauche
-                if (ev.keyCode === 37) {moveRobot([-1, 0]);}
+                if (ev.keyCode === 37) {moveCursor([-1, 0]);}
                 // droite
-                if (ev.keyCode === 39) {moveRobot([ 1, 0]);}
+                if (ev.keyCode === 39) {moveCursor([ 1, 0]);}
             }
             /**
              *
@@ -99,7 +100,7 @@
             function actionBtn (ev) {
                 ev.preventDefault();
                 var td = $(ev.currentTarget);
-                if (td.hasClass('robot')) {alert("un robot!");}
+                if (td.hasClass('cursor')) {alert("un cursor!");}
                 else {console.log("personne ici");}
             }
             /**
@@ -142,8 +143,9 @@
                 }
                 this.constrained = params.constrained || false;
                 initGrid(params.grid);
-                initRobot();
+                initCursor();
                 initBtn();
+                document.focus();
             }
             this.init = init;
         };
