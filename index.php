@@ -1,40 +1,11 @@
 <?php
-$grid = array(
-    32,
-    16
-);
-$cursor = array(
-    16,
-    8
-);
-$robot = array(
-    2,
-    2
-);
-function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
-    $domRobot = "<robot class='strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>";
-    $x    = $gridsize[0];
-    $y    = $gridsize[1];
-    $grid = "<table class='grid'>\n";
-
-    for ($i = 0; $i < $y; $i++) {
-        $grid .= '<tr>';
-        for ($j = 0; $j < $x; $j++) {
-            $iscursor = $cursor[0] === $j && $cursor[1] === $i;
-            $isrobot  = $robot[0] === $j && $robot[1] === $i;
-            $isrobot  = rand(0,100) > 90;
-            $isSea    = $j >= $x * 3/$i && $i >= $y * 2/$j;
-            $land = ($isSea) ? "sea" : "plain";
-            $className = ($iscursor) ? "cursor" : "";
-            $content   = ($isrobot)  ? $domRobot : "";
-            $grid .= "<td class='$land $className' data-x='$j' data-y='$i'>$content</td>";
-        }
-        $grid .= "</tr>\n";
-    }
-
-    $grid .= '</table>';
-    echo $grid;
-}
+require_once 'app/vendor/autoload.php';
+require_once 'app/autoload.php';
+$_SESSION['core']  = new Main();
+$_SESSION['debug'] = FALSE;
+$grid   = array(32, 16);
+$cursor = array(16,  8);
+$robot  = array( 2,  2);
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -51,7 +22,7 @@ function makeGrid ($gridsize=array(), $cursor=array(), $robot) {
     </head>
     <body>
         <div class="main">
-            <?php makegrid($grid, $cursor, $robot); ?>
+            <?php echo $_SESSION['core']->getgrid($grid, $cursor, $robot); ?>
             <section class="contextuel">
                 <h2>informations</h2>
             </section>

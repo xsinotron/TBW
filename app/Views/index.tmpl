@@ -1,0 +1,26 @@
+{% extends "base.tmpl" %}
+
+{% block title %}{{ Title|e('html') }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Accueil</h1>
+    <p class="important">
+        Welcome to my awesome homepage.
+    </p>
+    <ul>
+    {% for i in range(0, 3) %}
+        {% if i is even %}<li class="even">{{ i }}</li>{% endif %}
+        {% if i is odd  %}<li class="odd">{{ i }}</li>{% endif %}
+    {% endfor %}
+    </ul>
+{% endblock %}
+{% block footer %}
+    <a href="#">toto</a>
+    {# Récupère le footer par défaut #}
+    {{ parent() }}
+{% endblock %}
