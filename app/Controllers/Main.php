@@ -45,7 +45,8 @@ class Main {
                     "x"       => $j,
                     "y"       => $i
                 );
-                if ($isrobot) $col["troup"] = TRUE;
+                if ($isrobot && $isSea) $col["blob"] = TRUE;
+                else if ($isrobot) $col["robot"] = TRUE;
                 $line["zone"][] = $col;
             }
             $grid["gridlines"][] = $line;
