@@ -5,7 +5,9 @@ $_SESSION['core']  = new Main();
 $_SESSION['debug'] = FALSE;
 $grid   = array(32, 16);
 $cursor = array(16,  8);
-$robot  = array( 2,  2);
+$troups = array(
+    array( 2,  2)
+);
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -22,7 +24,7 @@ $robot  = array( 2,  2);
     </head>
     <body>
         <div class="main">
-            <?php echo $_SESSION['core']->getgrid($grid, $cursor, $robot); ?>
+            <?php echo $_SESSION['core']->getgrid($grid, $cursor, $troups); ?>
             <section class="contextuel">
                 <h2>informations</h2>
             </section>
