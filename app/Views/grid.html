@@ -3,7 +3,8 @@
     <tr>
         {{#zone}}
         <td class='{{cls}}' data-x='{{x}}' data-y='{{y}}'>
-            {{#troup}}<robot class='strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>{{/troup}}
+            {{#robot}}<robot class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>{{/robot}}
+            {{#blob}} <blob  class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></blob>{{/blob}}
         </td>
         {{/zone}}
     </tr>

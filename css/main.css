@@ -29,10 +29,8 @@ html, body{
     /* GENE  CSS3 */ transition-duration: .1s;
     /* GENE  CSS3 */ transition-timing-function: ease-out;
 }
-robot{
-  -webkit-transition: all -webkit-transform ease-out .2s;
-}
-robot:before {
+blob, robot{ -webkit-transition: all -webkit-transform ease-out .2s;}
+blob:before, robot:before {
     content: "";
     display: block;
     position: absolute;
@@ -84,7 +82,23 @@ robot {
     border-color: #AB1212;
     cursor: pointer;
 }
-robot.small {
+blob {
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 2px 4px 15px;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    margin: 20px 10px;
+    box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin: 0;
+    height: 60px;
+    background: none repeat scroll 0% 0% rgb(200,200,255);
+    border-color: rgb(150,150,255);
+    cursor: pointer;
+}
+.small {
   height: 26px;
   width:  18px;
   border-width: 2px 4px 8px 4px;
