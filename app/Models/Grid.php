@@ -21,7 +21,8 @@ class Grid {
                     "x"       => $j,
                     "y"       => $i
                 );
-                if ($istroups) $col["troup"] = TRUE;
+                if ($istroups && $isSea) $col["blob"] = TRUE;
+                else if ($istroups) $col["robot"] = TRUE;
                 $line["zone"][] = $col;
             }
             $this->board["gridlines"][] = $line;
