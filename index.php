@@ -3,7 +3,7 @@ require_once 'app/vendor/autoload.php';
 require_once 'app/autoload.php';
 $_SESSION['core']  = new Main();
 $_SESSION['debug'] = FALSE;
-$grid   = array(32, 16);
+$grid   = array(16, 16);
 $cursor = array(16,  8);
 $troups = array(
     array( 2,  2)
@@ -21,6 +21,7 @@ $troups = array(
         <link rel="stylesheet" href="css/vendor/bootstrap.css">
         <link rel="stylesheet" href="css/vendor/bootstrap-theme.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/sprites.css">
     </head>
     <body>
         <div class="main">
@@ -28,6 +29,9 @@ $troups = array(
             <section class="contextuel">
                 <h2>informations</h2>
             </section>
+            <div class="main-menu">
+                <h1>TURN BASE WAR</h1>
+            </div>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>

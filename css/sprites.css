@@ -1,0 +1,9 @@
+.sprites *{
+    background-image: url("vendor/awFactions.png");
+}
+.sprite{
+    background-position: 0 0;
+    width:  16px;
+    height: 16px;
+    overflow: hidden;
+}

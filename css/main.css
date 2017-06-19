@@ -106,7 +106,7 @@ blob {
 robot:hover {
   box-shadow: 0 0 0 6px rgba(255,255,255,.7);
 }
-.contextuel{position: absolute;bottom: 0;left: 20px;width: 20%;background-color: rgba(0,0,0,0.7);color: #F0F0F0;padding: 10px}
+.contextuel{position: absolute;bottom: 0;right: 20px;width: 20%;border: 1px solid white;background-color: rgba(0,0,0,0.7);color: #F0F0F0;padding: 10px}
 
      .plain{background-color: #2ecc40}
 .zone.plain{background-color: #28A335}
