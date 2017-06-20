@@ -23,6 +23,13 @@ class Main {
     /**
      *
      */
+    public function getEditor () {
+        $m = new Mustache_Engine;
+        return $m->render(file_get_contents($this->views."editor.html"));
+    }
+    /**
+     *
+     */
     public function getGrid ($gridsize=array(), $cursor=array(), $troups) {
         $m = new Mustache_Engine;
         $board = new Grid($gridsize, $cursor, $troups);

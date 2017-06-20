@@ -196,13 +196,15 @@
                         w: Math.floor($("body > .main").innerWidth()),
                         h: Math.floor($("body > .main").innerHeight())
                     },
+                    headerH = parseInt($('.page-header').css('marginBottom'),10) + parseInt($('.page-header').css('marginTop'),10)+Math.round($('.page-header').outerHeight()),
                     wX    = Math.floor(main.w / grid.x),
-                    wY    = Math.floor(main.h / grid.y),
+                    wY    = Math.floor((main.h - headerH) / grid.y),
                     useX  = wX < wY,
                     size  = ((useX) ? wX : wY ) + "px";
                 console.log("initGrid", wX, wY, size);
                 $(".grid tr").css("height", size);
-                $(".grid td").css("width",  size);
+                //$(".grid td").css("width",  size);
+                $("col").css("width",  size);
                 return true;
             }
             /**

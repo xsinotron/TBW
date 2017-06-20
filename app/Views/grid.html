@@ -1,10 +1,17 @@
-<table class='grid'>
+<table class='grid sprites'>
+    <colgroup>
+    {{#gridlines}}
+     <col class="col-grid">
+    {{/gridlines}}
+    </colgroup>
     {{#gridlines}}
     <tr>
         {{#zone}}
         <td class='{{cls}}' data-x='{{x}}' data-y='{{y}}'>
-            {{#robot}}<robot class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>{{/robot}}
-            {{#blob}} <blob  class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></blob>{{/blob}}
+            {{#robot}}<div class="sprite">
+                <div class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></div>
+            </div>{{/robot}}
+            {{#blob}} <div class="sprite"><blob  class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></blob></div>{{/blob}}
         </td>
         {{/zone}}
     </tr>

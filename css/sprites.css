@@ -1,4 +1,4 @@
-.sprites *{
+.sprites .sprite{
     background-image: url("vendor/awFactions.png");
 }
 .sprite{

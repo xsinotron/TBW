@@ -25,16 +25,25 @@ $troups = array(
     </head>
     <body>
         <div class="main">
-            <?php echo $_SESSION['core']->getgrid($grid, $cursor, $troups); ?>
+            <div class="page-header">
+                <h1>TURN BASE WAR</h1>
+            </div>
+            <div class="col-md-6">
+            <?php
+            echo $_SESSION['core']->getgrid($grid, $cursor, $troups);
+            ?>
+            </div>
+            <div class="col-md-6">
+            <?php
+            echo $_SESSION['core']->geteditor();
+            ?>
+            </div>
             <section class="contextuel">
                 <h2>informations</h2>
             </section>
-            <div class="main-menu">
-                <h1>TURN BASE WAR</h1>
-            </div>
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script data-main="js/app" src="js/vendor/require.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
         <script>
