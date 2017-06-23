@@ -7,9 +7,9 @@
     {{#gridlines}}
     <tr>
         {{#zone}}
-        <td class='{{cls}}' data-x='{{x}}' data-y='{{y}}'>
+        <td class='{{cls}} grid-case' data-x='{{x}}' data-y='{{y}}'>
             {{#robot}}<div class="sprite">
-                <div class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></div>
+                <robot class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></robot>
             </div>{{/robot}}
             {{#blob}} <div class="sprite"><blob  class='troup strobe small' title='un robot!!' data-toggle='tooltip' data-placement='top' data-zone='3'></blob></div>{{/blob}}
         </td>

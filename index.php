@@ -42,23 +42,19 @@ $troups = array(
                 <h2>informations</h2>
             </section>
         </div>
-        <script data-main="js/app" src="js/vendor/require.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
         <script>
-            var control = new TBW();
-            control.init({
-                grid: {
-                    x: <?=$grid[0] ?>,
-                    y: <?=$grid[1] ?>
-                },
-                cursor: {
-                    x: <?=$cursor[0] ?>,
-                    y: <?=$cursor[1] ?>
-                },
-                constrained: false
-            });
+        window.devdata = {
+            grid: {
+                x: <?=$grid[0] ?>,
+                y: <?=$grid[1] ?>
+            },
+            cursor: {
+                x: <?=$cursor[0] ?>,
+                y: <?=$cursor[1] ?>
+            },
+            constrained: false
+        };
         </script>
+        <script data-main="js/app" src="js/vendor/require.js"></script>
     </body>
 </html>
